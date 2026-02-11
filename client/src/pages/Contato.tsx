@@ -8,13 +8,13 @@ export default function Contato() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1 container py-8">
-        <h1 className="text-4xl font-bold text-foreground mb-8">Entre em Contato</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 md:mb-8 text-center md:text-left">Entre em Contato</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Informações */}
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Fale comigo!</h2>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4 text-center md:text-left">Fale comigo!</h2>
               <p className="text-muted-foreground mb-6">
                 Estou sempre disponível para ajudar você a encontrar a joia perfeita. 
                 Entre em contato pelo WhatsApp para tirar dúvidas, fazer pedidos ou agendar uma visita.
@@ -44,8 +44,8 @@ export default function Contato() {
           </div>
 
           {/* Formulário de Contato */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Envie uma Mensagem</h2>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4 text-center md:text-left">Envie uma Mensagem</h2>
             <p className="text-muted-foreground mb-6">
               Preencha o formulário abaixo ou clique no botão para abrir o WhatsApp diretamente.
             </p>

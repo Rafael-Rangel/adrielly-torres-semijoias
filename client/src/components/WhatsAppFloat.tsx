@@ -101,12 +101,18 @@ export default function WhatsAppFloat() {
   };
 
   return (
-    <div className="whatsapp-float-container fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div
+      className="whatsapp-float-container fixed z-50 flex flex-col items-end gap-2"
+      style={{
+        bottom: 'max(1rem, env(safe-area-inset-bottom))',
+        right: 'max(1rem, env(safe-area-inset-right))',
+      }}
+    >
       {/* Popup tipo chat WhatsApp */}
       {popupOpen && (
         <div
           ref={popupRef}
-          className="animate-in fade-in slide-in-from-bottom-4 duration-200 bg-[#efeae2] rounded-2xl shadow-xl border border-border overflow-hidden w-[300px] sm:w-[320px] flex flex-col max-h-[420px]"
+          className="animate-in fade-in slide-in-from-bottom-4 duration-200 bg-[#efeae2] rounded-2xl shadow-xl border border-border overflow-hidden w-[calc(100vw-2rem)] max-w-[320px] flex flex-col max-h-[min(420px,70vh)]"
           role="dialog"
           aria-label="Chat de atendimento"
         >

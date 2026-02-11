@@ -190,33 +190,35 @@ export default function HeroBannerCarousel() {
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="max-w-2xl"
+                    className="max-w-2xl w-full text-center md:text-left"
                   >
-                    <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight font-gumani">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-3 md:mb-4 leading-tight font-gumani">
                       {banner.headline}
                     </h1>
-                    <p className="text-lg lg:text-xl text-white/90 mb-8 max-w-xl font-gumani">
+                    <p className="text-sm sm:text-base lg:text-xl text-white/90 mb-6 md:mb-8 max-w-xl mx-auto md:mx-0 font-gumani">
                       {banner.subheadline}
                     </p>
-                    <div className="flex gap-4 flex-wrap">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start flex-wrap">
                       {banner.primaryButton && (
-                        <Link href={banner.primaryButton.link}>
-                          <Button size="default" className="gap-2">
+                        <Link href={banner.primaryButton.link} className="w-full sm:w-auto">
+                          <Button size="default" className="gap-2 w-full sm:w-auto">
                             {banner.primaryButton.text}
                           </Button>
                         </Link>
                       )}
                       {banner.secondaryButton && (
                         banner.secondaryButton.action ? (
-<WhatsAppButton preset="hero" size="default" variant="outline">
+                          <span className="w-full sm:w-auto block">
+                            <WhatsAppButton preset="hero" size="default" variant="outline" className="w-full sm:w-auto">
                               {banner.secondaryButton.text}
                             </WhatsAppButton>
+                          </span>
                         ) : (
-                          <Link href={banner.secondaryButton.link}>
+                          <Link href={banner.secondaryButton.link} className="w-full sm:w-auto">
                             <Button
                               size="default"
                               variant="outline"
-                              className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20"
+                              className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white/20 w-full sm:w-auto"
                             >
                               {banner.secondaryButton.text}
                             </Button>
@@ -233,7 +235,7 @@ export default function HeroBannerCarousel() {
       </Carousel>
 
       {/* Indicadores de slide */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10">
         {banners.map((_, index) => (
           <button
             key={index}

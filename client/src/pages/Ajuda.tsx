@@ -10,14 +10,14 @@ export default function Ajuda() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1 container py-8">
-        <h1 className="text-4xl font-bold text-foreground mb-8">Ajuda & Informações</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 md:mb-8 text-center md:text-left">Ajuda & Informações</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 md:mb-12">
           {/* Entrega */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Truck className="text-accent" size={32} />
-              <h2 className="text-2xl font-bold text-foreground">Entrega</h2>
+              <Truck className="text-accent flex-shrink-0" size={28} />
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">Entrega</h2>
             </div>
             <div className="space-y-3">
               <p className="text-foreground">
@@ -33,10 +33,10 @@ export default function Ajuda() {
           </div>
 
           {/* Garantia */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Shield className="text-accent" size={32} />
-              <h2 className="text-2xl font-bold text-foreground">Garantia</h2>
+              <Shield className="text-accent flex-shrink-0" size={28} />
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">Garantia</h2>
             </div>
             <div className="space-y-3">
               <p className="text-foreground">
@@ -52,10 +52,10 @@ export default function Ajuda() {
           </div>
 
           {/* Pagamento */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center gap-3 mb-4">
-              <CreditCard className="text-accent" size={32} />
-              <h2 className="text-2xl font-bold text-foreground">Formas de Pagamento</h2>
+              <CreditCard className="text-accent flex-shrink-0" size={28} />
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground">Formas de Pagamento</h2>
             </div>
             <div className="space-y-3">
               <p className="text-foreground">Aceitamos as seguintes formas de pagamento:</p>

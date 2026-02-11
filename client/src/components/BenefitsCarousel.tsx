@@ -34,15 +34,18 @@ export default function BenefitsCarousel() {
     resumeTimeoutRef.current = setTimeout(resume, RESUME_DELAY_MS);
   }, [resume]);
 
+  const rafIdRef = useRef<number | null>(null);
+
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    // Velocidade constante em pixels por segundo (igual em qualquer taxa de atualização)
     const PIXELS_PER_SECOND = 35;
     let lastTime: number | null = null;
+    let cancelled = false;
 
     const scroll = (time: number) => {
+      if (cancelled) return;
       if (lastTime != null && !isPaused) {
         const delta = (time - lastTime) / 1000;
         scrollPositionRef.current += PIXELS_PER_SECOND * delta;
@@ -51,11 +54,15 @@ export default function BenefitsCarousel() {
         carousel.scrollLeft = scrollPositionRef.current;
       }
       lastTime = time;
-      requestAnimationFrame(scroll);
+      rafIdRef.current = requestAnimationFrame(scroll);
     };
 
-    const animationId = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationId);
+    rafIdRef.current = requestAnimationFrame(scroll);
+    return () => {
+      cancelled = true;
+      if (rafIdRef.current != null) cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    };
   }, [isPaused]);
 
   // Duplicar os benefícios para criar loop infinito
@@ -63,7 +70,7 @@ export default function BenefitsCarousel() {
 
   return (
     <div
-      className="bg-secondary/30 py-6 overflow-hidden relative"
+      className="bg-secondary/30 py-4 sm:py-6 overflow-hidden relative"
       onMouseEnter={pause}
       onMouseLeave={scheduleResumeAfterRelease}
       onPointerDown={pause}
@@ -84,11 +91,11 @@ export default function BenefitsCarousel() {
           return (
             <div
               key={index}
-              className="flex items-center gap-3 flex-shrink-0 px-6"
+              className="flex items-center gap-2 sm:gap-3 flex-shrink-0 px-4 sm:px-6"
               style={{ minWidth: 'fit-content' }}
             >
-              <Icon className="text-accent" size={24} />
-              <span className="text-foreground font-medium whitespace-nowrap">
+              <Icon className="text-accent flex-shrink-0" size={20} />
+              <span className="text-foreground font-medium whitespace-nowrap text-sm sm:text-base">
                 {benefit.text}
               </span>
             </div>

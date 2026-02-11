@@ -75,7 +75,7 @@ export default function Carrinho() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1 container py-8">
-        <h1 className="text-4xl font-bold text-foreground mb-8">Carrinho de Compras</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 md:mb-8 text-center sm:text-left">Carrinho de Compras</h1>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -91,52 +91,54 @@ export default function Carrinho() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-white rounded-lg shadow-md p-4 flex gap-4"
+                className="bg-white rounded-lg shadow-md p-4 flex flex-col sm:flex-row gap-4"
               >
-                <img
-                  src={item.imagem}
-                  alt={item.nome}
-                  className="w-24 h-24 object-cover rounded-lg"
-                />
-                <div className="flex-1">
-                  <h3 className="font-bold text-foreground mb-1">{item.nome}</h3>
-                  <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{item.descricao}</p>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        disabled={item.quantidade <= 1}
-                        onClick={() => handleQuantityChange(item.id, item.quantidade - 1)}
-                        className={item.quantidade <= 1 ? 'opacity-50 cursor-not-allowed bg-muted/50 border-muted' : ''}
-                      >
-                        <Minus size={16} />
-                      </Button>
-                      <Input
-                        type="number"
-                        min={1}
-                        value={item.quantidade}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value, 10);
-                          handleQuantityChange(item.id, isNaN(val) || val < 1 ? 1 : val);
-                        }}
-                        className="w-16 text-center"
-                      />
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => handleQuantityChange(item.id, item.quantidade + 1)}
-                      >
-                        <Plus size={16} />
-                      </Button>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-lg font-bold text-accent">
-                        R$ {(item.preco * item.quantidade).toFixed(2)}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        R$ {item.preco.toFixed(2)} cada
-                      </p>
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <img
+                    src={item.imagem}
+                    alt={item.nome}
+                    className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg flex-shrink-0"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-foreground mb-1 text-sm sm:text-base line-clamp-2">{item.nome}</h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3 line-clamp-2">{item.descricao}</p>
+                    <div className="flex flex-wrap justify-between items-center gap-2">
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          disabled={item.quantidade <= 1}
+                          onClick={() => handleQuantityChange(item.id, item.quantidade - 1)}
+                          className={item.quantidade <= 1 ? 'opacity-50 cursor-not-allowed bg-muted/50 border-muted' : ''}
+                        >
+                          <Minus size={16} />
+                        </Button>
+                        <Input
+                          type="number"
+                          min={1}
+                          value={item.quantidade}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value, 10);
+                            handleQuantityChange(item.id, isNaN(val) || val < 1 ? 1 : val);
+                          }}
+                          className="w-16 text-center"
+                        />
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          onClick={() => handleQuantityChange(item.id, item.quantidade + 1)}
+                        >
+                          <Plus size={16} />
+                        </Button>
+                      </div>
+                      <div className="text-right ml-auto sm:ml-0">
+                        <p className="text-base sm:text-lg font-bold text-accent">
+                          R$ {(item.preco * item.quantidade).toFixed(2)}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          R$ {item.preco.toFixed(2)} cada
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -161,7 +163,7 @@ export default function Carrinho() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="bg-secondary/50 rounded-lg p-6 sticky top-24"
+              className="bg-secondary/50 rounded-lg p-4 sm:p-6 sticky top-20 sm:top-24"
             >
               <h2 className="text-xl font-bold text-foreground mb-4">Resumo do Pedido</h2>
               

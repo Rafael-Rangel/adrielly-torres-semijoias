@@ -94,14 +94,14 @@ export default function Loja() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1 container py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Loja</h1>
-          <p className="text-muted-foreground">Encontre as joias perfeitas para você</p>
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 text-center sm:text-left">Loja</h1>
+          <p className="text-muted-foreground text-center sm:text-left text-sm sm:text-base">Encontre as joias perfeitas para você</p>
         </div>
 
         {/* Filtros e Busca */}
         <div className="bg-secondary/50 rounded-lg p-4 mb-6 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {/* Busca */}
             <div className="md:col-span-2">
               <Input
@@ -166,12 +166,12 @@ export default function Loja() {
             </div>
 
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground text-lg">Nenhum produto encontrado</p>
+              <div className="text-center py-12 px-4">
+                <p className="text-muted-foreground text-base sm:text-lg">Nenhum produto encontrado</p>
                 <p className="text-muted-foreground text-sm mt-2">Tente ajustar os filtros</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {filteredProducts.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}

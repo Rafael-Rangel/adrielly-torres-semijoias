@@ -3,17 +3,17 @@ import { getWhatsAppUrl, getWhatsAppPresetMessage } from '@/lib/config';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-12">
+    <footer className="bg-black text-white py-10 md:py-12">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
           {/* About */}
           <div>
             <img 
               src="/logo.png" 
               alt="MUNRÁ semijoias" 
-              className="h-10 mb-4 w-auto object-contain"
+              className="h-10 mb-4 w-auto object-contain mx-auto md:mx-0"
             />
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm max-w-sm mx-auto md:mx-0">
               Joias & Semijoias com qualidade, elegância e exclusividade. 
               Venda direta ao cliente final.
             </p>
@@ -63,10 +63,10 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <div className="border-t border-gray-800 pt-6 md:pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400 text-center md:text-left">
             <p>&copy; 2026 Adrielly Torres. Todos os direitos reservados.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
+            <div className="flex gap-6">
               <Link href="/ajuda" className="hover:text-accent transition-colors">Ajuda</Link>
               <Link href="/contato" className="hover:text-accent transition-colors">Contato</Link>
             </div>

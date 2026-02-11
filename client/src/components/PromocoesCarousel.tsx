@@ -151,7 +151,7 @@ export default function PromocoesCarousel({ title, products, link, banner }: Pro
           {duplicated.map((product, index) => (
             <div
               key={`${product.id}-${index}`}
-              className="flex-shrink-0 w-[280px] sm:w-[300px]"
+              className="flex-shrink-0 w-[260px] sm:w-[280px] md:w-[300px]"
             >
               <ProductCard product={product} index={0} />
             </div>
@@ -162,8 +162,8 @@ export default function PromocoesCarousel({ title, products, link, banner }: Pro
   );
 
   const bannerBlock = banner ? (
-    <Link href={banner.link} className="flex-shrink-0">
-      <div className="relative w-full lg:w-[280px] xl:w-[320px] aspect-[3/4] max-h-[480px] rounded-xl overflow-hidden group">
+    <Link href={banner.link} className="flex-shrink-0 order-first lg:order-none w-full max-w-sm mx-auto lg:max-w-none lg:mx-0">
+      <div className="relative w-full lg:w-[280px] xl:w-[320px] aspect-[3/4] max-h-[360px] md:max-h-[480px] rounded-xl overflow-hidden group">
         <img
           src={banner.image}
           alt={banner.subtitle}
@@ -192,12 +192,12 @@ export default function PromocoesCarousel({ title, products, link, banner }: Pro
   ) : null;
 
   return (
-    <section className="py-12">
+    <section className="py-8 md:py-12">
       <div className="container">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-foreground">{title}</h2>
-          <Link href={link}>
-            <Button variant="outline" className="gap-2">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center sm:text-left">{title}</h2>
+          <Link href={link} className="flex justify-center sm:justify-end">
+            <Button variant="outline" className="gap-2 w-full sm:w-auto">
               <Store size={18} />
               Ver todos
             </Button>

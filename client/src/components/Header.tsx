@@ -77,8 +77,8 @@ export default function Header() {
     <>
     <header ref={headerRef} className="bg-white border-b border-border fixed top-0 left-0 right-0 w-full z-50 shadow-sm transition-all duration-300">
       {/* Top Bar - Promoção */}
-      <div className={`px-4 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`} style={{ backgroundColor: '#968567' }}>
-        <div className="container flex justify-center items-center">
+      <div className={`px-3 sm:px-4 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`} style={{ backgroundColor: '#968567' }}>
+        <div className="container flex justify-center items-center min-w-0">
           <HeaderCountdown />
         </div>
       </div>
@@ -159,17 +159,17 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className={`lg:hidden border-t border-border flex flex-col gap-3 transition-all duration-300 ${isScrolled ? 'mt-2 pb-2 pt-2' : 'mt-4 pb-4 pt-4'}`}>
-            <Link href="/" className="text-foreground hover:text-accent transition-colors font-medium">
+          <nav className={`lg:hidden border-t border-border flex flex-col gap-2 transition-all duration-300 ${isScrolled ? 'mt-2 pb-2 pt-2' : 'mt-4 pb-4 pt-4'}`}>
+            <Link href="/" onClick={() => setIsMenuOpen(false)} className="py-2 text-foreground hover:text-accent transition-colors font-medium text-center sm:text-left">
               HOME
             </Link>
-            <Link href="/loja" className="text-foreground hover:text-accent transition-colors font-medium">
+            <Link href="/loja" onClick={() => setIsMenuOpen(false)} className="py-2 text-foreground hover:text-accent transition-colors font-medium text-center sm:text-left">
               LOJA
             </Link>
-            <Link href="/ajuda" className="text-foreground hover:text-accent transition-colors font-medium">
+            <Link href="/ajuda" onClick={() => setIsMenuOpen(false)} className="py-2 text-foreground hover:text-accent transition-colors font-medium text-center sm:text-left">
               AJUDA
             </Link>
-            <Link href="/contato" className="text-foreground hover:text-accent transition-colors font-medium">
+            <Link href="/contato" onClick={() => setIsMenuOpen(false)} className="py-2 text-foreground hover:text-accent transition-colors font-medium text-center sm:text-left">
               CONTATO
             </Link>
           </nav>
@@ -179,7 +179,7 @@ export default function Header() {
       {/* Categories Bar */}
       <div className="border-t border-border bg-secondary/50 transition-all duration-300">
         <div className={`container overflow-x-auto transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
-          <div className="flex justify-center gap-6 text-sm font-medium whitespace-nowrap items-center">
+          <div className="flex justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium whitespace-nowrap items-center min-w-max px-1">
             {CATEGORIAS.slice(0, 7).map((cat) => {
               const Icon = CATEGORIA_ICONS[cat];
               return (

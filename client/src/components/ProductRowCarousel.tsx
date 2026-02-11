@@ -53,8 +53,11 @@ export default function ProductRowCarousel({ title, products, link, leftBanner }
       if (!containerRef.current) return;
       const container = containerRef.current;
       const totalWidth = container.offsetWidth;
-      const gapTotal = CARD_GAP * 3;
-      setCardWidth((totalWidth - gapTotal) / 4);
+      const isMobile = totalWidth < 640;
+      const isTablet = totalWidth >= 640 && totalWidth < 1024;
+      const visible = isMobile ? 1 : isTablet ? 2 : 4;
+      const gapTotal = CARD_GAP * (visible - 1);
+      setCardWidth(Math.max(200, (totalWidth - gapTotal) / visible));
     };
 
     updateWidth();
@@ -102,12 +105,12 @@ export default function ProductRowCarousel({ title, products, link, leftBanner }
   );
 
   return (
-    <section className="py-12">
+    <section className="py-8 md:py-12">
       <div className="container">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-foreground">{title}</h2>
-          <Link href={link}>
-            <Button variant="outline" className="gap-2">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground text-center sm:text-left">{title}</h2>
+          <Link href={link} className="flex justify-center sm:justify-end">
+            <Button variant="outline" className="gap-2 w-full sm:w-auto">
               <Store size={18} />
               Ver todos
             </Button>

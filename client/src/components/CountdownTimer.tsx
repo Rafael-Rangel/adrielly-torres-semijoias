@@ -74,16 +74,16 @@ export default function CountdownTimer({
       />
       {/* Conteúdo */}
       <div className="relative z-10 container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 font-gumani drop-shadow-sm tracking-wide">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 font-gumani drop-shadow-sm tracking-wide">
             {title}
           </h2>
-          <p className="text-white/90 text-base md:text-lg max-w-xl mx-auto">
+          <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-xl mx-auto px-1">
             {description}
           </p>
         </div>
 
-        <div className="flex justify-center gap-3 md:gap-5 mb-8 flex-wrap">
+        <div className="flex justify-center gap-2 sm:gap-3 md:gap-5 mb-6 md:mb-8 flex-wrap">
           <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 md:p-5 shadow-lg text-center min-w-[76px] md:min-w-[88px] border border-white/30">
             <div className="text-2xl md:text-3xl font-bold text-[#968567] tabular-nums">{String(timeLeft.days).padStart(2, '0')}</div>
             <div className="text-xs text-[#6b5d52] font-medium mt-1 uppercase tracking-wider">Dias</div>

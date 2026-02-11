@@ -207,7 +207,7 @@ export default function Checkout() {
                   value={formData.formaPagamento}
                   onValueChange={(value) => setFormData({ ...formData, formaPagamento: value })}
                 >
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {FORMAS_PAGAMENTO.map((forma) => {
                       const isSelected = formData.formaPagamento === forma.value;
                       const iconClass = "text-[22px] text-foreground";
@@ -262,7 +262,7 @@ export default function Checkout() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="bg-secondary/50 rounded-lg p-6 sticky top-24"
+                className="bg-secondary/50 rounded-lg p-4 sm:p-6 sticky top-20 sm:top-24"
               >
                 <h2 className="text-xl font-bold text-foreground mb-4">Resumo do Pedido</h2>
                 

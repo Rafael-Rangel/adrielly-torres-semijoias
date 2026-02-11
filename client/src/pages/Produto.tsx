@@ -150,10 +150,10 @@ export default function Produto() {
             className="space-y-6"
           >
             <div>
-              <h1 className="text-4xl font-bold text-foreground mb-2">{product.nome}</h1>
-              <p className="text-muted-foreground mb-2">Código: {product.id}</p>
-              <p className="text-2xl font-bold text-accent mb-4">R$ {product.preco.toFixed(2)}</p>
-              <p className="text-foreground">{product.descricao}</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2 text-center md:text-left">{product.nome}</h1>
+              <p className="text-muted-foreground mb-2 text-center md:text-left text-sm">Código: {product.id}</p>
+              <p className="text-xl sm:text-2xl font-bold text-accent mb-4 text-center md:text-left">R$ {product.preco.toFixed(2)}</p>
+              <p className="text-foreground text-sm sm:text-base text-center md:text-left">{product.descricao}</p>
             </div>
 
             {!product.disponivel && (
@@ -194,10 +194,10 @@ export default function Produto() {
 
             {/* Botões */}
             {product.disponivel && (
-              <div className="flex gap-4 flex-wrap">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button
                   onClick={handleAddToCart}
-                  className="flex-1 min-w-[200px] gap-2 h-12 text-base"
+                  className="w-full sm:flex-1 gap-2 h-12 text-base"
                   size="lg"
                 >
                   <ShoppingCart size={20} />
@@ -206,7 +206,7 @@ export default function Produto() {
                 <WhatsAppButton
                   preset="produto"
                   productName={product?.nome}
-                  className="flex-1 min-w-[200px] h-12 justify-center"
+                  className="w-full sm:flex-1 h-12 justify-center"
                   size="lg"
                 >
                   Comprar pelo WhatsApp
@@ -255,8 +255,8 @@ export default function Produto() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="mt-12"
           >
-            <h2 className="text-2xl font-bold text-foreground mb-6">Leve também</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-6 text-center md:text-left">Leve também</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.map((related, index) => (
                 <motion.div
                   key={related.id}

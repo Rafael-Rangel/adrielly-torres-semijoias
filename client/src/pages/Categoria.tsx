@@ -92,23 +92,23 @@ export default function Categoria() {
         ) : (
           <>
             <div className="mb-4 space-y-4">
-              <div className="relative max-w-md">
+              <div className="relative w-full max-w-md mx-auto md:mx-0">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-muted-foreground pointer-events-none" />
                 <Input
                   type="search"
                   placeholder="Pesquisar por nome, código..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-10 bg-secondary/50 border-border"
+                  className="pl-10 h-10 bg-secondary/50 border-border w-full"
                   aria-label="Pesquisar produtos"
                 />
               </div>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center md:text-left text-sm">
                 {filteredProducts.length} {filteredProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
               </p>
               <PriceFilter value={priceFilter} onChange={setPriceFilter} />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
               ))}

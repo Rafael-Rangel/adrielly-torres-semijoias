@@ -41,7 +41,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="product-card group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
     >
       <Link href={`/produto/${product.id}`}>
-        <div className="relative overflow-hidden bg-secondary h-64 cursor-pointer">
+        <div className="relative overflow-hidden bg-secondary h-48 sm:h-56 md:h-64 cursor-pointer">
           <img
             src={product.imagem}
             alt={product.nome}
@@ -62,21 +62,21 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
       </Link>
 
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <Link href={`/produto/${product.id}`}>
-          <h3 className="font-bold text-foreground mb-1 line-clamp-2 hover:text-accent cursor-pointer">
+          <h3 className="font-bold text-foreground mb-1 line-clamp-2 hover:text-accent cursor-pointer text-sm sm:text-base">
             {product.nome}
           </h3>
         </Link>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{product.descricao}</p>
-        <div className="flex justify-between items-center">
+        <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3 line-clamp-2">{product.descricao}</p>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
           <div className="flex flex-col">
             {isPromocao && (
               <span className="text-xs text-muted-foreground line-through">
                 R$ {(product.preco * 1.3).toFixed(2)}
               </span>
             )}
-            <span className={`text-lg font-bold ${isPromocao ? 'text-red-600' : 'text-accent'}`}>
+            <span className={`text-base sm:text-lg font-bold ${isPromocao ? 'text-red-600' : 'text-accent'}`}>
               R$ {product.preco.toFixed(2)}
             </span>
           </div>
@@ -84,7 +84,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             size="sm"
             onClick={handleAddToCart}
             disabled={!product.disponivel}
-            className="gap-2"
+            className="gap-2 w-full sm:w-auto"
           >
             <ShoppingCart size={16} />
             Adicionar
