@@ -115,12 +115,26 @@
 }
 
 @layer base {
+  html,
+  body {
+    overflow-x: hidden;
+  }
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Gumani Font */
+  @font-face {
+    font-family: 'GumaniMedium';
+    src: url('/fonts/Gumani.otf') format('opentype'),
+         url('/fonts/Gumani.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -221,4 +235,191 @@
   .product-image {
     @apply w-full h-64 object-cover bg-secondary;
   }
+  
+  /* GumaniMedium Font Utility */
+  .font-gumani {
+    font-family: 'GumaniMedium', sans-serif;
+    letter-spacing: 0.5px;
+  }
 }
+
+/* Animação faixa de luz / brilho no botão WhatsApp */
+@keyframes whatsapp-shimmer {
+  0% { transform: translateX(-100%) skewX(-18deg); }
+  100% { transform: translateX(200%) skewX(-18deg); }
+}
+
+/* Brilho periódico (passa de tempos em tempos) */
+.whatsapp-shine-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.whatsapp-shine-beam::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 42%,
+    rgba(255, 236, 200, 0.55) 50%,
+    rgba(255, 255, 255, 0.2) 58%,
+    transparent 70%,
+    transparent 100%
+  );
+  animation: whatsapp-shimmer 2.8s ease-in-out infinite;
+}
+
+/* Brilho ao passar o mouse ou toque (uma passada rápida) */
+.whatsapp-shine-trigger {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.whatsapp-shine-wrapper:hover .whatsapp-shine-trigger,
+.whatsapp-shine-wrapper:focus-within .whatsapp-shine-trigger,
+.whatsapp-shine-wrapper:active .whatsapp-shine-trigger {
+  opacity: 1;
+}
+
+.whatsapp-shine-trigger::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 42%,
+    rgba(255, 236, 200, 0.7) 50%,
+    rgba(255, 255, 255, 0.3) 58%,
+    transparent 70%,
+    transparent 100%
+  );
+  animation: whatsapp-shimmer 0.55s ease-out 1 forwards;
+}
+
+.whatsapp-shine-wrapper:hover .whatsapp-shine-trigger::after,
+.whatsapp-shine-wrapper:focus-within .whatsapp-shine-trigger::after,
+.whatsapp-shine-wrapper:active .whatsapp-shine-trigger::after {
+  animation: whatsapp-shimmer 0.55s ease-out 1 forwards;
+}
+
+/* Float: brilho periódico + hover */
+.whatsapp-float-shimmer {
+  animation: whatsapp-shimmer 2.8s ease-in-out infinite;
+}
+
+/* Duas faixas de luz diagonal branca passando pelo botão (velocidade não linear: começa rápida, termina devagar) */
+@keyframes whatsapp-beam-pass {
+  0% { transform: translateX(-100%) skewX(-20deg); opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: translateX(200%) skewX(-20deg); opacity: 0; }
+}
+
+.whatsapp-float-beams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* Faixa mais grossa: width maior e gradiente mais largo */
+.whatsapp-float-beams::before,
+.whatsapp-float-beams::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 75%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 22%,
+    rgba(255, 255, 255, 0.08) 38%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 62%,
+    transparent 78%,
+    transparent 100%
+  );
+  /* cubic-bezier: começa rápido, termina devagar (ease-out) */
+  animation: whatsapp-beam-pass 4.5s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+}
+
+.whatsapp-float-beams::before {
+  animation-delay: 0s;
+}
+
+.whatsapp-float-beams::after {
+  animation-delay: 2.8s;
+}
+
+/* Badge do WhatsApp: entrada (após 4s) + vibração contínua */
+@keyframes whatsapp-badge-enter {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes whatsapp-badge-shake {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1) translateY(-2px);
+  }
+}
+
+.whatsapp-badge {
+  animation: whatsapp-badge-enter 0.4s ease-out forwards,
+    whatsapp-badge-shake 1s ease-in-out 0.5s infinite;
+}
+
+/* Digitando... pontos animados no chat WhatsApp */
+@keyframes whatsapp-typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.whatsapp-typing-dot {
+  animation: whatsapp-typing-bounce 1.4s ease-in-out infinite;
+}
+
+.whatsapp-typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.whatsapp-typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+

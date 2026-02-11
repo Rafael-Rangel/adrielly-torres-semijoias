@@ -1,4 +1,5 @@
-import { MessageCircle, Mail, Phone } from 'lucide-react';
+import { Link } from 'wouter';
+import { getWhatsAppUrl, getWhatsAppPresetMessage } from '@/lib/config';
 
 export default function Footer() {
   return (
@@ -7,9 +8,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg mb-4">ADRIELLY TORRES</h3>
+            <img 
+              src="/logo.png" 
+              alt="MUNRÁ semijoias" 
+              className="h-10 mb-4 w-auto object-contain"
+            />
             <p className="text-gray-400 text-sm">
-              Revendedora oficial de semijoias Munra. Qualidade, elegância e exclusividade.
+              Joias & Semijoias com qualidade, elegância e exclusividade. 
+              Venda direta ao cliente final.
             </p>
           </div>
 
@@ -17,21 +23,21 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">NAVEGAÇÃO</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-accent transition-colors">Home</a></li>
-              <li><a href="#produtos" className="hover:text-accent transition-colors">Produtos</a></li>
-              <li><a href="#sobre" className="hover:text-accent transition-colors">Sobre</a></li>
-              <li><a href="#contato" className="hover:text-accent transition-colors">Contato</a></li>
+              <li><Link href="/" className="hover:text-accent transition-colors">Home</Link></li>
+              <li><Link href="/loja" className="hover:text-accent transition-colors">Loja</Link></li>
+              <li><Link href="/ajuda" className="hover:text-accent transition-colors">Ajuda</Link></li>
+              <li><Link href="/contato" className="hover:text-accent transition-colors">Contato</Link></li>
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Info */}
           <div>
-            <h4 className="font-bold mb-4">CATEGORIAS</h4>
+            <h4 className="font-bold mb-4">INFORMAÇÕES</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-accent transition-colors">Anéis</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Brincos</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Colares</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Pulseiras</a></li>
+              <li><Link href="/ajuda" className="hover:text-accent transition-colors">Entrega</Link></li>
+              <li><Link href="/ajuda" className="hover:text-accent transition-colors">Garantia</Link></li>
+              <li><Link href="/ajuda" className="hover:text-accent transition-colors">Formas de Pagamento</Link></li>
+              <li><Link href="/contato" className="hover:text-accent transition-colors">Fale Conosco</Link></li>
             </ul>
           </div>
 
@@ -39,21 +45,18 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">CONTATO</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li className="flex items-center gap-2">
-                <MessageCircle size={16} className="text-accent" />
-                <a href="https://wa.me/5511999999999" className="hover:text-accent transition-colors">
+              <li>
+                <a
+                  href={getWhatsAppUrl(getWhatsAppPresetMessage('footer'))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-accent transition-colors"
+                >
                   WhatsApp
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-accent" />
-                <a href="mailto:adrielly@example.com" className="hover:text-accent transition-colors">
-                  Email
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} className="text-accent" />
-                <span>(11) 99999-9999</span>
+              <li className="text-gray-400">
+                Telefone
               </li>
             </ul>
           </div>
@@ -64,8 +67,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
             <p>&copy; 2026 Adrielly Torres. Todos os direitos reservados.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-accent transition-colors">Política de Privacidade</a>
-              <a href="#" className="hover:text-accent transition-colors">Termos de Uso</a>
+              <Link href="/ajuda" className="hover:text-accent transition-colors">Ajuda</Link>
+              <Link href="/contato" className="hover:text-accent transition-colors">Contato</Link>
             </div>
           </div>
         </div>
