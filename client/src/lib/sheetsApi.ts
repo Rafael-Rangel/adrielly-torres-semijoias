@@ -32,7 +32,7 @@ export interface Product {
 }
 
 // URL da planilha do Google Sheets
-const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1OwvhupSDFUSclQFVyWW6VVB6kPldAxkBhQK3m6BKuJk/export?format=csv&gid=0';
+const SHEETS_BASE_URL = 'https://docs.google.com/spreadsheets/d/1OwvhupSDFUSclQFVyWW6VVB6kPldAxkBhQK3m6BKuJk/export?format=csv&gid=0';
 
 /**
  * Busca produtos do Google Sheets
@@ -75,7 +75,9 @@ function parseCSVLine(line: string): string[] {
 
 export async function fetchProductsFromSheets(): Promise<Product[]> {
   try {
-    const response = await fetch(SHEETS_URL);
+    // Adiciona timestamp para evitar cache
+    const urlWithTimestamp = `${SHEETS_BASE_URL}&t=${Date.now()}`;
+    const response = await fetch(urlWithTimestamp);
     if (!response.ok) {
       throw new Error('Erro ao buscar dados do Google Sheets');
     }

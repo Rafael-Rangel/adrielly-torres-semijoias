@@ -29,15 +29,17 @@ export default function Home() {
       await new Promise(resolve => setTimeout(resolve, 1000));
       const products = await fetchProductsFromSheets();
       
-      // Novidades (últimos 8 produtos)
-      setNovidades(products.slice(0, 8));
+      // Novidades (últimos 8 produtos adicionados - do fim para o começo)
+      const reversedProducts = [...products].reverse();
+      setNovidades(reversedProducts.slice(0, 8));
       
       // Mais vendidos (produtos mais baratos como exemplo)
       const sorted = [...products].sort((a, b) => a.preco - b.preco);
       setMaisVendidos(sorted.slice(0, 8));
       
-      // Promoções (produtos com promocao = true)
-      setPromocoes(products.filter(p => p.promocao === true).slice(0, 8));
+      // Promoções (produtos com promocao = true - pegando as mais recentes primeiro)
+      const allPromocoes = products.filter(p => p.promocao === true).reverse();
+      setPromocoes(allPromocoes.slice(0, 8));
     } catch (error) {
       console.error('Erro ao carregar produtos:', error);
     } finally {
